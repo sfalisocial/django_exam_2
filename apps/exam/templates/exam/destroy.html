@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Destination</title>
+  </head>
+  <body>
+    <header>
+      <p><a href="{% url 'wish:index' %}">Home</a></p>
+      <p><a href="{% url 'logout' %}">Logout</a></p>
+    </header>
+    <div>
+      <h1>Are you sure you want to destroy {{wish.wish}}?</h1>
+      <p>You sounded like you wanted it, you said:
+        {{wish.description}}
+      </p>
+    </div>
+    <p>
+      <a href="#">No, send me back</a>
+    </p>
+    <form action="{% url 'wish:destroy' id=wish.id %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Yes, I am sure">
+    </form>
+  </body>
+</html>
